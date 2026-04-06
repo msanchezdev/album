@@ -35,6 +35,23 @@
   elements.forEach((el) => observer.observe(el));
 })();
 
+// ===== Sticky Header Shadow =====
+(function stickyHeaderShadow() {
+  const headers = document.querySelectorAll('.moment__header');
+  if (!headers.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('stuck', !entry.isIntersecting);
+      });
+    },
+    { threshold: 1, rootMargin: '-1px 0px 0px 0px' }
+  );
+
+  headers.forEach((header) => observer.observe(header));
+})();
+
 // ===== Button Interactions =====
 (function setupButtons() {
   const btnYes = document.getElementById('btnYes');
